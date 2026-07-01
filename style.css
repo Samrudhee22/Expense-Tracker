@@ -1,0 +1,107 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Page background */
+body {
+    background: #f4f6f9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Heading */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input box container */
+div {
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+input {
+    padding: 8px;
+    margin: 5px 0;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Add button */
+button {
+    padding: 8px 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #28a745;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn{
+    transform: translateX(145px);
+}
+/* Button hover effect */
+button:hover {
+    background: #218838;
+}
+
+/* Table styling */
+table {
+    border-collapse: collapse;
+    width: 60%;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Table header */
+th {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+/* Table cells */
+td {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Action buttons inside table */
+td button {
+    margin: 2px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+/* Delete button */
+td button:nth-child(1) {
+    background: #dc3545;
+}
+
+/* Update button */
+td button:nth-child(2) {
+    background: #ffc107;
+    color: black;
+}
+
+/* Hover effects */
+td button:hover {
+    opacity: 0.8;
+}
+
+/* Total display */
+#total {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #222;
+}

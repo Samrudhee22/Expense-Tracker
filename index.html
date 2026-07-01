@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Expense Tracker</title>
+</head>
+<body>
+
+    <h2>Expense Tracker</h2>
+
+    <div>
+        Expense Name:
+        <input type="text" id="exp-name" maxlength="30">
+        <br><br>
+
+        Expesne Amount:
+        <input type="number" id="exp-amt">
+        <br><br>
+
+        <button class="btn" onclick="show()">
+            <i class="fa fa-plus"></i> Add
+        </button>
+    </div>
+
+    <hr>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Expense</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody id="table-data"></tbody>
+    </table>
+
+    <h3 id="total">Total Expenses: 0</h3>
+
+<script>
+let Expenses = [];
+let editIndex = -1;
+let totalSum = 0;
+
+function updateTotal() {
+    document.getElementById("total").innerText =
+        "Total Expenses: " + totalSum;
+}
+
+function renderTable() {
+    let tbody = document.getElementById("table-data");
+    tbody.innerHTML = "";
+
+    for (let i = 0; i < Expenses.length; i++) {
+
+        let tr = document.createElement("tr");
+
+        let td1 = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+
+        td1.innerText = Expenses[i].exp_name;
+        td2.innerText = Expenses[i].exp_amt;
+
+        // DELETE (safe closure)
+        let delete_btn = document.createElement("button");
+        delete_btn.innerText = "Delete";
+
+        delete_btn.onclick = (function(index) {
+            return function () {
+                let result = confirm("Delete this expense?");
+                if (result) {
+                    totalSum -= Number(Expenses[index].exp_amt);
+                    Expenses.splice(index, 1);
+                    renderTable();
+                    updateTotal();
+                }
+            };
+        })(i);
+
+        // UPDATE
+        let update_btn = document.createElement("button");
+        update_btn.innerText = "Update";
+
+        update_btn.onclick = (function(index) {
+            return function () {
+                document.getElementById("exp-name").value =
+                    Expenses[index].exp_name;
+
+                document.getElementById("exp-amt").value =
+                    Expenses[index].exp_amt;
+
+                editIndex = index;
+            };
+        })(i);
+
+        td3.appendChild(delete_btn);
+        td3.appendChild(update_btn);
+
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+
+        tbody.appendChild(tr);
+    }
+}
+
+function show() {
+    let exp_name = document.getElementById("exp-name").value.trim();
+    let exp_amt = document.getElementById("exp-amt").value;
+
+    if (exp_name === "") {
+        alert("Enter expense name");
+        return;
+    }
+
+    if (exp_amt === "" || exp_amt <= 0) {
+        alert("Enter valid amount");
+        return;
+    }
+
+    exp_amt = Number(exp_amt);
+
+    // ADD
+    if (editIndex === -1) {
+        Expenses.push({
+            exp_name,
+            exp_amt
+        });
+
+        totalSum += exp_amt;
+    }
+
+    // UPDATE
+    else {
+        totalSum -= Number(Expenses[editIndex].exp_amt);
+
+        Expenses[editIndex].exp_name = exp_name;
+        Expenses[editIndex].exp_amt = exp_amt;
+
+        totalSum += exp_amt;
+        editIndex = -1;
+    }
+
+    renderTable();
+    updateTotal();
+
+    document.getElementById("exp-name").value = "";
+    document.getElementById("exp-amt").value = "";
+}
+</script>
+
+</body>
+</html>
