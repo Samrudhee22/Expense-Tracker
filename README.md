@@ -24,8 +24,8 @@ A front-end Expense Tracker showcasing responsive UI design, DOM manipulation, l
 3. Open `index.html` in your web browser.
 
 ## 📸 Screenshot
-<img width="1920" height="917" alt="Screenshot " src="https://github.com/user-attachments/assets/3186b08c-a6c2-4ee5-b33d-c2815e6f5d22" />
 
+<img width="1920" height="917" alt="ssog" src="https://github.com/user-attachments/assets/70d99d69-8c45-48d5-b012-229aa9cc9a01" />
 
 
 
